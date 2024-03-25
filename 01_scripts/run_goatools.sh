@@ -11,6 +11,7 @@ OVERLAP_WIN=$2
 ANNOT_TABLE="02_genome_annot/genome_annotation_table_simplified.txt"
 GO_ANNOT="02_genome_annot/all_go_annotations.csv"
 GO_DB="03_go_db/go-basic.obo"
+#GO_DB="03_go_db/go-basic2022-07-01.obo"
 
 OVERLAP_DIR="05_overlap"
 GO_DIR="06_go_enrichment"
@@ -35,11 +36,11 @@ echo "$(less $OVERLAP_DIR/"$(basename -s .bed $CAND_BED)"_"$OVERLAP_WIN"bp.table
 less $OVERLAP_DIR/"$(basename -s .bed $CAND_BED)"_"$OVERLAP_WIN"bp.table | cut -f5 | sort | uniq > $GO_DIR/"$(basename -s .bed $CAND_BED)"_"$OVERLAP_WIN"bp_outlierIDs.txt
 
 # 4. Perform GO enrichment analysis genes overlapping candidate sites
-find_enrichment.py --pval=0.1 --indent \
+find_enrichment.py --pval=0.05 --indent \
   --obo $GO_DB \
   $GO_DIR/"$(basename -s .bed $CAND_BED)"_"$OVERLAP_WIN"bp_outlierIDs.txt \
   $GO_DIR/"$(basename -s .txt $ANNOT_TABLE)".background.IDs.txt \
-  $GO_ANNOT --min_overlap 0.1 \
+  $GO_ANNOT \
   --outfile $GO_DIR/"$(basename -s .bed $CAND_BED)"_"$OVERLAP_WIN"bp_GO.csv
   
 # 5. Filter results
