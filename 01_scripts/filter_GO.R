@@ -24,7 +24,8 @@ GO_table_filt <- subset(GO_table,
 
 # 3. Export to table ------------------------------------------------------
 write.table(GO_table_filt,
-            file = paste0(unlist(strsplit(GO_TABLE, split = '.csv'))[1], 
+            #file = paste0(unlist(strsplit(GO_TABLE, split = '.csv'))[1], 
+            file = paste0(OUTPUT_PREFIX,
                           '_fdr', MAX_FDR, '_depth', MIN_LEVEL, '.csv'),
             col.names = TRUE, 
             row.names = FALSE, quote = FALSE, sep = "\t"
