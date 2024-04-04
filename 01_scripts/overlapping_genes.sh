@@ -2,7 +2,7 @@
 
 # Use a conda env with goatools installed 
 
-# srun -p small -c 1 -J run_goatools -o log/run_goatools_%j.log /bin/sh 01_scripts/run_goatools.sh FILE 0 &
+# srun -p small -c 1 -J overlapping_genes -o log/overlapping_genes_%j.log /bin/sh 01_scripts/overlapping_genes.sh FILE 0 &
 
 # VARIABLES
 CAND_BED=$1
